@@ -1,0 +1,31 @@
+{% extends 'rbac/index.html' %}
+
+
+{% block custom_css %}
+<style>
+input{
+    margin-top: 20px;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+    <h1>编辑用户</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-5">
+            <form method="post">
+                {% for input_obj in form %}
+                    {{ input_obj }}
+                {% endfor %}
+                <input type="submit" value="提交" class="btn btn-block">
+            {% csrf_token %}
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+

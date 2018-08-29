@@ -1,0 +1,46 @@
+{% extends 'rbac/index.html' %}
+
+{% block custom_css %}
+<style>
+</style>
+{% endblock %}
+
+{% block content %}
+    <h1>用户列表页</h1>
+    <hr>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td style="width: 10%">id</td>
+                <td style="width: 15%">姓名</td>
+                <td style="width: 15%">密码</td>
+                <td style="width: 60%">邮箱</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% if '/rbac/users/add/' in request.session.permission_list %}
+                <a href="#" ><button class="btn btn-info">新增用户</button></a>
+            {% endif %}
+
+            {% for u in user_list %}
+            <tr>
+                <td>{{ u.id }}</td>
+                <td>{{ u.username }}</td>
+                <td>{{ u.password }}</td>
+                <td>{{ u.email }}<span>
+                    {% if '/rbac/users/edit/(\d+)/' in request.session.permission_list %}
+                        <a href="{% url 'user_edit' u.id %}" style="float: right;margin-right: 30%"
+                            ><button class="btn-success">编辑</button></a>
+                    {% endif %}
+
+                    {% if '/rbac/users/delete/(\d+)/' in request.session.permission_list %}
+                        <a href="{% url 'user_delete' u.id %}" style="float: right;margin-right: 10%"><button class="btn-danger">删除</button></a></span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

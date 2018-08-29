@@ -1,0 +1,37 @@
+{% extends 'rbac/index.html' %}
+
+{% block custom_css %}
+<style>
+</style>
+{% endblock %}
+
+{% block content %}
+    <h1>角色列表页</h1>
+    <hr>
+
+    <table class="table table-striped">
+
+        <tbody>
+            {% if '/rbac/users/add/' in request.session.permission_list %}
+                <a href="#" ><button class="btn btn-info">新增角色</button></a>
+            {% endif %}
+
+            {% for role in role_list %}
+            <tr>
+                <td>{{ role.id }}</td>
+                <td>{{ role.title }}</td>
+                <td>{{ u.email }}<span>
+                    {% if '/rbac/roles/edit/(\d+)/' in request.session.permission_list %}
+                        <a href="#" style="float: right;margin-right: 30%"
+                            ><button class="btn-success">编辑</button></a>
+                    {% endif %}
+
+                    {% if '/rbac/roles/delete/(\d+)/' in request.session.permission_list %}
+                        <a href="#" style="float: right;margin-right: 10%"><button class="btn-danger">删除</button></a></span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
