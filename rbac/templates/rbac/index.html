@@ -45,11 +45,9 @@ td{
 
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            {% if request.session.permissions_query %}
-                {% for p in request.session.permissions_query %}
-                <li><a href="{{ p.permissions__url }}">{{ p.permissions__title }}</a></li>
-                {% endfor %}
-            {% endif %}
+              {% for item in request.session.permissions_menu_list %}
+              <li><a href="{{ item.0 }}">{{ item.1 }}</a></li>
+              {% endfor %}
           </ul>
 
         </div>

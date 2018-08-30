@@ -9,6 +9,7 @@ class Permission_admin(admin.ModelAdmin):
 admin.site.register(models.UserInfo)
 admin.site.register(models.Role)
 admin.site.register(models.Permission,Permission_admin)
+admin.site.register(models.PermissonGroup)
 
 
 

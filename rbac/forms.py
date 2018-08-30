@@ -17,9 +17,9 @@ class UserInfoForm(ModelForm):
         # }
 
         # 修改对应字段的标签类型和显示样式
-        # widgets = {
-        #     'name': Textarea(attrs={'cols': 40, 'rows': 10}),
-        # }
+        widgets = {
+            'name': Textarea(attrs={'cols': 40, 'rows': 10}),
+        }
         error_messages = {
             'name': {
                 'max_length': ("This writer's name is too long."),

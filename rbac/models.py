@@ -31,10 +31,22 @@ class Permission(models.Model):
     """
     title = models.CharField(verbose_name='标题',max_length=32)
     url = models.CharField(max_length=64)
+    permission_group = models.ForeignKey('PermissonGroup',default=1)
+    action = models.CharField(max_length=32, default='')  # 权限操作：edit、list、delete、add
+    menu = models.BooleanField(default=0)
+    # 取出用户的菜单权限(url, group_title)
+    def __str__(self):
+        return self.title
 
+
+class PermissonGroup(models.Model):
+    """权限组：例如角色管理、用户管理"""
+    title = models.CharField(max_length=32)
 
     def __str__(self):
         return self.title
+
+
 
 
 

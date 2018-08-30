@@ -1,0 +1,49 @@
+{% extends 'rbac/index.html' %}
+
+
+
+{% block custom_css %}
+<style>
+input{
+    margin-top: 20px;
+}
+.form-control{
+    {#line-height: 20px;#}
+    {#height: 20px;#}
+}
+label{
+    margin-top: 20px;
+}
+select{
+    margin-top: 20px;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+    <h1>编辑角色</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-5">
+            <form method="post">
+                {% for input_obj in form %}
+                    <div class="row" style="vertical-align: center">
+                        <div class="col-md-3">
+                            <label for="{{ input_obj.id_for_label }}">{{ input_obj.label }}</label>
+                        </div>
+                        <div class="col-md-9">
+                            {{ input_obj }}
+                        </div>
+                    </div>
+                {% endfor %}
+                <input type="submit" value="提交" class="btn btn-block btn-success">
+            {% csrf_token %}
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+

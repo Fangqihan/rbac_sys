@@ -20,8 +20,10 @@
         </thead>
 
         <tbody>
-            {% if '/rbac/users/add/' in request.session.permission_list %}
-                <a href="#" ><button class="btn btn-info">新增用户</button></a>
+{#            {% if 'add' in request.session.permissions_dict.1.actions %}#}
+{#            {% if 'add' in request.actions %}#}
+            {% if request.actions.add %}
+                <a href="{% url 'user_add' %}" ><button class="btn btn-info">新增用户</button></a>
             {% endif %}
 
             {% for u in user_list %}
@@ -30,12 +32,16 @@
                 <td>{{ u.username }}</td>
                 <td>{{ u.password }}</td>
                 <td>{{ u.email }}<span>
-                    {% if '/rbac/users/edit/(\d+)/' in request.session.permission_list %}
+{#                    {% if 'edit' in request.session.permissions_dict.1.actions %}#}
+{#                    {% if 'edit' in request.actions %}#}
+                    {% if request.actions.edit %}
                         <a href="{% url 'user_edit' u.id %}" style="float: right;margin-right: 30%"
                             ><button class="btn-success">编辑</button></a>
                     {% endif %}
 
-                    {% if '/rbac/users/delete/(\d+)/' in request.session.permission_list %}
+{#                    {% if 'delete' in request.session.permissions_dict.1.actions %}#}
+{#                    {% if 'delete' in request.actions %}#}
+                    {% if request.actions.delete %}
                         <a href="{% url 'user_delete' u.id %}" style="float: right;margin-right: 10%"><button class="btn-danger">删除</button></a></span>
                     {% endif %}
                 </td>
